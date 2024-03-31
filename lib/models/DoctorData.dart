@@ -10,4 +10,21 @@ class Doctor {
     required this.hospital,
     required this.phone,
   });
+
+  
+  // Doctor fromJson(Map<String, dynamic> json) {
+  //   return Doctor(
+  //     'name':name,
+  //     'hospital':hospital,
+  //     'phone':phone,
+  //   );
+  // }
 }
+
+  // Users fromJson(Map<String, dynamic> json) {
+  //   return Users(
+  //     firstname: json["firstname"],
+  //     lastname: json["lastname"],
+  //     email: json["email"],
+  //   );
+  // }

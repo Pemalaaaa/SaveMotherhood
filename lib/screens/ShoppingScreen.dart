@@ -14,9 +14,12 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Shop Now!!!"),
-      ),
+       appBar: AppBar(
+           centerTitle: true,
+          title: Text("Shop Now !!!", style:TextStyle(fontWeight: FontWeight.w700), ),
+          elevation: 0,
+          backgroundColor: Color(0xFFFFC2CD),
+        ),
       body: ListView.builder(
         scrollDirection: Axis.vertical,
         itemCount: Product_data.length,

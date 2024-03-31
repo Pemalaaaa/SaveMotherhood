@@ -1,7 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:badges/badges.dart' as badges;
+import 'package:badges/badges.dart';
+import 'package:get/get.dart';
+import 'package:pema_la/LocalStorage/SharedPref.dart';
+import 'package:pema_la/notification/noticationController.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -11,15 +15,67 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  int notificationCount = 0;
+  void updateNotificationCount(int newCount) {
+    setState(() {
+      notificationCount = newCount;
+    });
+  }
+
+  @override
+  void initState() {
+    SharedPref().getUserData();
+    super.initState();
+  }
+
+  final NotificationController _notificationController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Welcome Nancy !"), actions: [
-        IconButton(
-          icon: Icon(Icons.notification_add),
-          onPressed: () {},
-        )
-      ]),
+      appBar: AppBar(
+        title: Text('Welcome back! Nancy'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 6.0),
+            child: badges.Badge(
+              showBadge: true,
+              ignorePointer: false,
+              badgeContent: Obx(() => Text(
+                  _notificationController.notificationCount > 99
+                      ? '99+'
+                      : _notificationController.notificationCount.value
+                          .toString(),
+                  style: const TextStyle(
+                      fontSize: 10,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold))),
+              position: BadgePosition.topEnd(top: 0, end: 0),
+              badgeAnimation: const badges.BadgeAnimation.rotation(
+                animationDuration: Duration(milliseconds: 1),
+                colorChangeAnimationDuration: Duration(seconds: 1),
+                loopAnimation: false,
+                curve: Curves.fastOutSlowIn,
+                colorChangeAnimationCurve: Curves.bounceInOut,
+              ),
+              badgeStyle: badges.BadgeStyle(
+                padding: const EdgeInsets.all(2),
+                borderRadius: BorderRadius.circular(4),
+                shape: badges.BadgeShape.square,
+                //badgeColor: Colors.amber,
+                elevation: 0,
+              ),
+              child: IconButton(
+                onPressed: () {
+                  _notificationController.updateNotificationCount(0);
+                  Navigator.pushNamed(context, '/Notification');
+                },
+                icon: const Icon(Icons.notification_add_rounded,
+                    color: Colors.black),
+              ),
+            ),
+          ),
+        ],
+      ),
       body:
           // this container is for adding the color to the entire scaffold
           Container(
@@ -51,13 +107,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                 
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/articles');
+                      Navigator.pushNamed(context, "/periodic");
                     },
-                   
                     child: Column(
                       children: [
                         Container(
@@ -131,8 +185,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            color: Color(0xFF29ADB2
-                            ), // Background color of the box
+                            color: Color(
+                                0xFF29ADB2), // Background color of the box
                             borderRadius: BorderRadius.circular(
                                 10.0), // Border radius to create rounded corners
                           ),

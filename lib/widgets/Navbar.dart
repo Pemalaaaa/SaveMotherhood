@@ -33,8 +33,8 @@ class _NavbarState extends State<Navbar> {
       bottomNavigationBar: CurvedNavigationBar(
         index: _selectedIndex,
         height: 50.0,
-        items: <Widget>[
-          Icon(Icons.home, size: 30, color: Colors.white),
+        items: const <Widget>[
+          const Icon(Icons.home, size: 30, color: Colors.white),
           Icon(Icons.phone, size: 30, color: Colors.white),
           Icon(Icons.person, size: 30, color: Colors.white),
         ],

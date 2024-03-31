@@ -1,164 +1,122 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:pema_la/services/Auth.dart';
+import 'package:pema_la/widgets/ESnackBar.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  //Text controller
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+class _LoginScreenState extends State<LoginScreen> {
+  //controller
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-  //makeing the method as sign in for the gesture ontap signin
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-         password: _passwordController.text.trim(),);
-  }
+//form key
+  GlobalKey<FormState> addLoginFormKey = GlobalKey<FormState>();
 
-// Memory management of the text controller
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
+  //login function define
+  void _login() async {
+    await Authentication()
+        .login(emailController.text, passwordController.text)
+        .then((value) => {
+              if (value == true)
+                {
+                  ESnackBar.showSuccess(context, "Login Successful"),
+                  Navigator.pushNamed(context, "/navbar")
+                }
+              else
+                {ESnackBar.showError(context, "Login failed")}
+            });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF7E5E7),
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 15,
+        appBar: AppBar(title: Text("LoginScreen")),
+        body: Column(
+          children: [
+            //1. make input field  for email and password
+            //2. give a decoration and hint text
+            //3. give a padding (wrap Ctrl + .)
+            //4. make a button
+            //5. validation ko lagi chai first ma we have to keep all the textformfield to form
+            //6. controller
+            //7/
+
+            Form(
+              key: addLoginFormKey,
+              child: Column(children: [
+                Text('Login'),
+                TextFormField(
+                  controller: emailController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter email';
+                    } else {
+                      return null;
+                    }
+                  },
+                  decoration: InputDecoration(
+                      labelText: 'Email',
+                      hintText: 'Email',
+                      border: OutlineInputBorder()),
                 ),
-                //Hello again!
-                Text(
-                  "Hello there!",
-                  style: GoogleFonts.bebasNeue(
-                    fontSize: 40,
-                  ),
+                const SizedBox(
+                  height: 10,
                 ),
-                SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 30, right: 8),
-                  child: Text(
-                    "Welcome back! ",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17,
-                    ),
-                  ),
-                ),
-                Text(
-                  "Your journey with us is so special!",
-                  style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontSize: 17,
-                  ),
+                TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter password';
+                    } else {
+                      return null;
+                    }
+                  },
+
+                  obscureText: true, // password hide
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                      labelText: 'Password',
+                      hintText: 'Password',
+                      border: OutlineInputBorder()),
                 ),
                 SizedBox(
                   height: 20,
                 ),
-
-                //email textfield
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: TextField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Email',
-                          ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                        minimumSize:
+                            Size.fromHeight(50) // screen anu sarko image
                         ),
-                      )),
-                ),
+                    onPressed: () {
+                      if (addLoginFormKey.currentState!.validate()) {
+                        _login();
+                      }
+                    },
+                    child: Text('Login')),
 
-                //password Textfield
-                SizedBox(
-                  height: 10,
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: TextField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Password',
-                          ),
-                        ),
-                      )),
-                ),
-                SizedBox(height: 10),
-                //sign in button
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: GestureDetector(
-                    onTap: signIn,
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                          color: Color(0xFFFFC2CD),
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Center(
-                        child: Text(
-                          'Sign In',
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
-                      ),
+                //Register
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/register');
+                  },
+                  child: Center(
+                    child: Text(
+                      'create new account',
+                      style: TextStyle(
+                          color: const Color.fromARGB(255, 51, 17, 145),
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-
-                // register and not a member
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Not register ?",
-                    ),
-                    Text(
-                      " Register now",
-                      style: TextStyle(
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+              ]),
+            )
+          ],
+        ));
   }
 }

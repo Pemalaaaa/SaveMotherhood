@@ -51,4 +51,7 @@
         <data android:scheme="https" />
     </intent>
 </queries>
+<!--WebView-->
+<uses-permission android:name="android.permission.INTERNET"/>
+
 </manifest>

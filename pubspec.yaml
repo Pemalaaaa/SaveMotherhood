@@ -46,6 +46,14 @@ dependencies:
   lottie: ^3.1.0
   google_fonts: ^6.2.1
   firebase_auth: ^4.18.0
+  get: ^4.6.6
+  firebase_core: ^2.27.2
+  shared_preferences: ^2.2.2
+  cloud_firestore: ^4.15.10
+  awesome_notifications: ^0.9.3+1
+  badges: ^3.1.2
+  webview_flutter: ^4.7.0
+ 
   
   
 

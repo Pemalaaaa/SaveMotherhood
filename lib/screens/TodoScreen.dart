@@ -86,7 +86,8 @@ class _TodoScreenState extends State<TodoScreen> {
     return Scaffold(
         backgroundColor: Color(0xFFF7E5E7),
         appBar: AppBar(
-          title: Text("To Do"),
+           centerTitle: true,
+          title: Text("To Do", style:TextStyle(fontWeight: FontWeight.w700), ),
           elevation: 0,
           backgroundColor: Color(0xFFFFC2CD),
         ),
