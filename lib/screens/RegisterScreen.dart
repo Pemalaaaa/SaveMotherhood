@@ -38,8 +38,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Register Page'),
+       backgroundColor:Color(0xFFF7E5E7),
+         appBar: AppBar(
+           centerTitle: true,
+          title: Text("Register Now", style:TextStyle(fontWeight: FontWeight.w700), ),
+          elevation: 0,
+          backgroundColor: Color(0xFFFFC2CD),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -104,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
+                        backgroundColor:Color(0xFFFFC2CD),
                         foregroundColor: Colors.white,
                         minimumSize: Size.fromHeight(50)),
                     onPressed: () {

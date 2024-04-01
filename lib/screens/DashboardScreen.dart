@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:badges/badges.dart';
@@ -69,7 +68,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   _notificationController.updateNotificationCount(0);
                   Navigator.pushNamed(context, '/Notification');
                 },
-                icon: const Icon(Icons.notification_add_rounded,
+                icon: const Icon(Icons.notifications,
                     color: Colors.black),
               ),
             ),
@@ -137,7 +136,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           height: 12,
                         ),
                         Text(
-                          "Articles",
+                          "Check Up",
                           style: TextStyle(
                               fontWeight: FontWeight.w500, color: Colors.black),
                         ),

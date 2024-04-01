@@ -1,4 +1,3 @@
-
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,6 +10,7 @@ import 'package:pema_la/notification/PeriodicNotify.dart';
 import 'package:pema_la/notification/noticationController.dart';
 import 'package:pema_la/notification/notificationdata.dart';
 import 'package:pema_la/screens/AddDoctorScreen.dart';
+import 'package:pema_la/screens/ChangePassword.dart';
 import 'package:pema_la/screens/DashboardScreen.dart';
 import 'package:pema_la/screens/EditProfileScreen.dart';
 import 'package:pema_la/screens/ProfileScreen.dart';
@@ -62,9 +62,10 @@ void main() async {
   runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
 
-       initialRoute: user != null
-        ? '/navbar'
-        : '/login', // what we need to dislay we can write here
+initialRoute:'/login',
+      //  initialRoute: user != null
+      //   ? '/navbar'
+      //   : '/login', // what we need to dislay we can write here
 
       routes: {
         '/onbording': (context) => OnBoardingScreen(),
@@ -79,12 +80,15 @@ void main() async {
         '/Notification': (context) => NotificationCheckUp(),
         '/profileId':(context)=>ProfileScreen(),
 
-        //make login funcion
+          //make login funcion
          '/login': (context) => LoginScreen(),
           '/register':(context)=>RegisterScreen(),
 
           //Edit profile:
           '/editprofile':(context)=>EditProfile(),
+
+          //change passweord
+          '/changePassword':(context)=> ChangePasswordScreen(),
           
           
 

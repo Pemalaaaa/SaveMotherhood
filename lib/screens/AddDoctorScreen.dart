@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 
 class AddDoctorScreen extends StatefulWidget {
   const AddDoctorScreen({super.key});
@@ -36,11 +37,12 @@ class _AddDoctorScreenState extends State<AddDoctorScreen> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color(0xFFFFC2CD),
-        title: Text("Add Doctors", style: TextStyle(fontWeight: FontWeight.w700)),
+        title:
+            Text("Add Doctors", style: TextStyle(fontWeight: FontWeight.w700)),
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, "/view", arguments: 'doctors' );
+              Navigator.pushNamed(context, "/view", arguments: 'doctors');
             },
             icon: Icon(Icons.remove_red_eye),
           )
@@ -86,12 +88,18 @@ class _AddDoctorScreenState extends State<AddDoctorScreen> {
                     borderSide: BorderSide(color: Color(0xFFFFC2CD)),
                   ),
                 ),
+                keyboardType: TextInputType.phone,
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(10),
+                ],
               ),
               SizedBox(height: 13),
               ElevatedButton(
                 onPressed: _addDoctor,
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFFFC2CD)),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xFFFFC2CD)),
                 ),
                 child: Text(
                   "Add Doctor",

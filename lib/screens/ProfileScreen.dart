@@ -13,9 +13,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          
-        ),
+        appBar: AppBar(),
         body: Center(
           child: Column(
             children: [
@@ -49,6 +47,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       subtitle: Text("Give a old Passowrd "),
                       leading: Icon(Icons.lock),
                       trailing: Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/changePassword');
+                      },
                     )
                   ],
                 ),

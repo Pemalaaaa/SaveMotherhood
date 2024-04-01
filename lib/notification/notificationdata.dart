@@ -1,8 +1,7 @@
 //calling data from firebase
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+//import 'package:get/get.dart';
 
 class NotificationCheckUp extends StatefulWidget {
   const NotificationCheckUp({super.key});
@@ -94,17 +93,8 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // leading: IconButton(
-        //     onPressed: () {
-        //       Get.back();
-        //     },
-        //     icon: const Icon(
-        //       Icons.arrow_back_ios_rounded,
-        //       size: 20,
-        //       color: Colors.white,
-        //     )),
         backgroundColor: Color(0xFFFFC2CD),
-        title: const Text(
+        title:  Text(
           'Notifications',
           style: TextStyle(
             color: Colors.black,
@@ -133,8 +123,8 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                       builder: (BuildContext context) {
                         return SingleChildScrollView(
                           child: AlertDialog(
-                            title: const Text("Edit Activity",
-                                style: TextStyle(color: Colors.amber)),
+                            title: const Text("Check Up Schedule",
+                                style: TextStyle(color: Colors.black)),
                             content: Column(
                               // Edit Event Name
                               mainAxisSize: MainAxisSize.min,
@@ -145,7 +135,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                                   },
                                   controller: _name,
                                   decoration: const InputDecoration(
-                                      labelText: 'Event Name'),
+                                      labelText: 'Follow Up'),
                                 ),
 
                                 //Edit Event Place
@@ -155,7 +145,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                                   },
                                   controller: _place,
                                   decoration: const InputDecoration(
-                                      labelText: 'Visit Place'),
+                                      labelText: 'Hospital location'),
                                 ),
                                 const SizedBox(height: 10),
 
@@ -208,13 +198,13 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                                         decoration: InputDecoration(
                                           hintText: 'YYYY/MM/DD',
                                           labelStyle: const TextStyle(
-                                            color: Colors.white,
+                                            color: Colors.black,
                                             fontSize: 15,
                                             fontWeight: FontWeight.w600,
                                           ),
                                           prefixIcon: const Icon(
                                             Icons.date_range,
-                                            color: Colors.red,
+                                            color: Color(0xFFFFC2CD),
                                           ),
                                           border: OutlineInputBorder(
                                             borderRadius:
@@ -234,7 +224,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                                   height: 10,
                                 ),
 
-                                //Edit Event Time
+                                //Edit follow up schedule
                                 ValueListenableBuilder<DateTime?>(
                                   valueListenable: dateSub,
                                   builder: (context, timeVal, child) {
@@ -263,8 +253,8 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                                                     Theme.of(context).copyWith(
                                                   colorScheme:
                                                       ColorScheme.fromSwatch(
-                                                    primarySwatch: Colors.red,
-                                                    accentColor: Colors.red,
+                                                   // primarySwatch: Colors.red,
+                                                    accentColor:Color(0xFFFFC2CD),
                                                   ),
                                                 ),
                                                 child: child!,
@@ -300,7 +290,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                                           ),
                                           prefixIcon: const Icon(
                                             Icons.access_time,
-                                            color: Colors.red,
+                                            color: Color(0xFFFFC2CD),
                                           ),
                                           border: OutlineInputBorder(
                                             borderRadius:
@@ -335,7 +325,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                                 children: [
                                   TextButton(
                                     child: const Text("Cancel",
-                                        style: TextStyle(color: Colors.amber)),
+                                        style: TextStyle(color: Color(0xFFFFC2CD))),
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
@@ -343,7 +333,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                                   IconButton(
                                     icon: const Icon(
                                       Icons.edit,
-                                      color: Colors.amber,
+                                     color: Color(0xFFFFC2CD)
                                     ),
                                     onPressed: () {
                                       updateData();
@@ -353,7 +343,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                                   IconButton(
                                     icon: const Icon(
                                       Icons.delete_forever,
-                                      color: Colors.amber,
+                                      color: Color(0xFFFFC2CD)
                                     ),
                                     onPressed: () {
                                       deleteData(documentSnapshot
@@ -385,7 +375,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                       Row(
                         children: [
                           const Text(
-                            "Event            : ",
+                            "Follow Up            : ",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,
@@ -407,7 +397,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                       Row(
                         children: [
                           const Text(
-                            "Place            : ",
+                            "Location              : ",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,
@@ -429,7 +419,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                       Row(
                         children: [
                           const Text(
-                            "Date              : ",
+                            "Date                     : ",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,
@@ -451,7 +441,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                       Row(
                         children: [
                           const Text(
-                            "Time             : ",
+                            "Time                    : ",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,
@@ -473,7 +463,7 @@ class _NotificationCheckUpState extends State<NotificationCheckUp> {
                       Row(
                         children: [
                           const Text(
-                            "Description : ",
+                            "Description         : ",
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 15,

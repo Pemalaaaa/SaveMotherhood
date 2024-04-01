@@ -69,7 +69,7 @@ class _PerodicNotifyState extends State<PerodicNotify> {
       _time.clear();
       _description.clear();
       dateSub.value = null;
-      return "Event has been added to list";
+      return "Follow up has been added to list";
     } else {
       return "Please fill out all the fields";
     }
@@ -148,7 +148,7 @@ class _PerodicNotifyState extends State<PerodicNotify> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(message),
-              backgroundColor: Colors.amber,
+              backgroundColor: Color(0xFFFFC2CD),
             ),
           );
         },
@@ -185,7 +185,7 @@ class _PerodicNotifyState extends State<PerodicNotify> {
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
-                  prefixIcon: const Icon(Icons.medical_information , color: Colors.red),
+                  prefixIcon: const Icon(Icons.medical_information , color: Color(0xFFFFC2CD)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -212,17 +212,17 @@ class _PerodicNotifyState extends State<PerodicNotify> {
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
-                  prefixIcon: const Icon(Icons.place, color: Colors.red),
+                  prefixIcon: const Icon(Icons.place, color: Color(0xFFFFC2CD)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  labelText: 'Place',
+                  labelText: 'Location',
                 ),
               ),
             ),
             const SizedBox(height: 15),
 
-            // Event Date Field
+            // Follow up Date Field
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
@@ -263,7 +263,7 @@ class _PerodicNotifyState extends State<PerodicNotify> {
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
-                  prefixIcon: const Icon(Icons.date_range, color: Colors.amber),
+                  prefixIcon: const Icon(Icons.date_range, color: Color(0xFFFFC2CD)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -288,7 +288,7 @@ class _PerodicNotifyState extends State<PerodicNotify> {
                         data: Theme.of(context).copyWith(
                           colorScheme: ColorScheme.fromSwatch(
                             primarySwatch: Colors.blue,
-                            accentColor: Colors.pink,
+                            accentColor: Color(0xFFFFC2CD),
                           ),
                         ),
                         child: child!,
@@ -314,7 +314,7 @@ class _PerodicNotifyState extends State<PerodicNotify> {
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
-                  prefixIcon: const Icon(Icons.access_time, color: Colors.amber),
+                  prefixIcon: const Icon(Icons.access_time, color: Color(0xFFFFC2CD)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -339,7 +339,7 @@ class _PerodicNotifyState extends State<PerodicNotify> {
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
                   ),
-                  prefixIcon: const Icon(Icons.note, color: Colors.red),
+                  prefixIcon: const Icon(Icons.note, color: Color(0xFFFFC2CD)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
