@@ -25,23 +25,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
         .register(firstnameController.text, lastnameController.text,
             emailController.text, passwordController.text)
         .then((value) => {
-          if(value==true){
-            ESnackBar.showSuccess(context, "Register Siccesfull!")
-          
-          }
-          else{
-            ESnackBar.showError(context, "Register Failed!")
-          }
-        });
+              if (value == true)
+                {ESnackBar.showSuccess(context, "Register Successfull!")}
+              else
+                {ESnackBar.showError(context, "Register Failed!")}
+            });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor:Color(0xFFF7E5E7),
-         appBar: AppBar(
-           centerTitle: true,
-          title: Text("Register Now", style:TextStyle(fontWeight: FontWeight.w700), ),
+        backgroundColor: Color(0xFFF7E5E7),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            "Register Now",
+            style: TextStyle(fontWeight: FontWeight.w700),
+          ),
           elevation: 0,
           backgroundColor: Color(0xFFFFC2CD),
         ),
@@ -88,6 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                     decoration: InputDecoration(
+                       
                         hintText: 'Enter your email',
                         border: OutlineInputBorder()),
                   ),
@@ -102,13 +103,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     obscureText: true,
                     decoration: InputDecoration(
-                        hintText: 'Enter your password',
+                        hintText: 'Enter your password altleast 6 character',
                         border: OutlineInputBorder()),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor:Color(0xFFFFC2CD),
+                        backgroundColor: Color(0xFFFFC2CD),
                         foregroundColor: Colors.white,
                         minimumSize: Size.fromHeight(50)),
                     onPressed: () {

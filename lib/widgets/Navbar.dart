@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pema_la/LocalStorage/SharedPref.dart';
 import 'package:pema_la/models/DoctorData.dart';
 import 'package:pema_la/screens/AddDoctorScreen.dart';
 import 'package:pema_la/screens/DashboardScreen.dart';
@@ -13,6 +14,12 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
+  @override
+  void initState() {
+    SharedPref().getUserData();
+    super.initState();
+  }
+
   // 1. Selecting an index from where to start
   int _selectedIndex = 0;
 

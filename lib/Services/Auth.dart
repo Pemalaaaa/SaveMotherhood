@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:pema_la/LocalStorage/SharedPref.dart';
 import 'package:pema_la/models/user.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class Authentication {
   // Make a login function
@@ -22,17 +25,22 @@ class Authentication {
           .get();
 
       // Convert the result
-      var convertedResult = Users().fromJson(result.data()!);
-      print(convertedResult.firstname);
-      // Set that data to local storage globally
-      SharedPref().setUserData(userID, convertedResult);
+      var decodedJson = Users.fromJson(result.data()!);
+
+      SharedPref().setUserData(decodedJson, userID);
 
       // isLogin is true
       isLogin = true;
-    // ignore: invalid_return_type_for_catch_error
+      // ignore: invalid_return_type_for_catch_error
     }).catchError((error) => {isLogin = false});
 
     return isLogin;
+  }
+
+  Future<void> signOut() async {
+    var auth = FirebaseAuth.instance;
+    await auth.signOut();
+    await SharedPref().removeUserData();
   }
 
   // Make a register function
@@ -49,7 +57,7 @@ class Authentication {
 
     // Then register the user with extra Info in Firestore
     await FirebaseFirestore.instance
-        .collection('users')
+        .collection("users")
         .doc(userID)
         .set({
           "firstname": firstname,
@@ -68,5 +76,31 @@ class Authentication {
     var _auth = FirebaseAuth.instance;
     User? user = _auth.currentUser;
     return user;
+  }
+
+  //profile edit
+  Future<String?> uploadProfileToFirebase(File imageFile) async {
+    try {
+      final path = 'profile/${DateTime.now()}.png';
+      final file = File(imageFile.path);
+      final ref = firebase_storage.FirebaseStorage.instance.ref().child(path);
+      await ref.putFile(file);
+      final url = await ref.getDownloadURL();
+      return url;
+    } catch (e) {
+      print('Error Uploading image to Firebase Storage: $e');
+      return null;
+    }
+  }
+
+  Future<void> updateProfile(userID, Users user) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(userID)
+          .update(user.toJson());
+    } catch (e) {
+      print('Error updating profile: $e');
+    }
   }
 }

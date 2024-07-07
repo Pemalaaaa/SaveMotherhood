@@ -53,6 +53,11 @@ dependencies:
   awesome_notifications: ^0.9.3+1
   badges: ^3.1.2
   webview_flutter: ^4.7.0
+  syncfusion_flutter_pdfviewer: ^24.2.8
+  firebase_storage: ^11.6.11
+  permission_handler: ^11.3.1
+  image_picker: ^1.0.7
+  
  
   
   
@@ -87,9 +92,10 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/doctors/
     - assets/products/
     - assets/intopics/
+    #pdf
+    - assets/pdf/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

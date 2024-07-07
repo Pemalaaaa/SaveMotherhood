@@ -3,21 +3,25 @@ import 'package:pema_la/models/ProductList.dart';
 
 List<Product> Product_data = [
   Product(
-      name:
-          "HELLO MIZ Women's Maternity Dress V-Neck Short Sleeve for Baby Shower",
-      price: 5000.0,
-      image: "assets/products/pro1.PNG",
-      link: "https://amzn.to/3Pg1WUD"),
+      name:"Women's Short Puff Sleeve Maternity Dress Summer Square Neck Ruffle Hem Smocked Bodycon Dress for Baby Shower",
+      price: 50.0,
+      image: "assets/products/pro11-removebg-preview.png",
+      link: "https://amzn.to/3xMSfH6"),
+  Product(
+      name:"Hudson Baby unisex-baby Cotton Long-sleeve Bodysuits",
+      price: 11.62,
+      image: "assets/products/pro222-removebg-preview.png",
+      link: "https://bit.ly/49Cktl9"),
   Product(
       name:
-          "HELLO MIZ Women's Maternity Dress V-Neck Short Sleeve for Baby Shower",
-      price: 5000.0,
-      image: "assets/products/pro1.PNG",
-      link: "https://amzn.to/3Pg1WUD"),
+          "Chicco Bravo Primo Trio Travel System, Quick-Fold Stroller with Chicco KeyFit 35 Zip Extended-Use Infant Car Seat and Stroller Combo | Springhill/Black",
+      price: 629.99,
+      image: "assets/products/pro22-removebg-preview.png",
+      link: "https://amzn.to/4d0wgwS"),
   Product(
       name:
-          "HELLO MIZ Women's Maternity Dress V-Neck Short Sleeve for Baby Shower",
-      price: 5000.0,
-      image: "assets/products/pro1.PNG",
-      link: "https://amzn.to/3Pg1WUD"),
+          "Carbamide Forte Prenatal Multivitamin For Pre, Post And During Pregnancy with 300mg DHA & 18 Ingredients - 60 Capsulesr",
+      price: 21.05,
+      image: "assets/products/pro33-removebg-preview.png",
+      link: "https://bit.ly/3Q3896S"),
 ];

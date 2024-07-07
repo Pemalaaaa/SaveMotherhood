@@ -41,6 +41,7 @@ class _ViewOfDoctorScreenState extends State<ViewOfDoctorScreen> {
           // Map documents to Doctor objects
           doctors = documents.map((doc) {
             return Doctor(
+              id: doc.id,
               name: doc['name'],
               hospital: doc['hospital'],
               phone: doc['phone'],
@@ -93,37 +94,35 @@ class _ViewOfDoctorScreenState extends State<ViewOfDoctorScreen> {
     );
   }
 
-// Function to delete a doctor from Firestore
-void _deleteDoctor(int index) async {
-  try {
-    // Get the doctor object to delete
-    Doctor doctorToDelete = doctors[index];
+  // Function to delete a doctor from Firestore
+  void _deleteDoctor(int index) async {
+    try {
+      // Get the doctor object to delete
+      Doctor doctorToDelete = doctors[index];
 
-    // Query Firestore for the document matching the properties of the doctor
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('Doctor_view')
-        .where('name', isEqualTo: doctorToDelete.name)
-        .where('hospital', isEqualTo: doctorToDelete.hospital)
-        .where('phone', isEqualTo: doctorToDelete.phone)
-        .get();
+      // Query Firestore for the document matching the properties of the doctor
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Doctor_view')
+          .where('name', isEqualTo: doctorToDelete.name)
+          .where('hospital', isEqualTo: doctorToDelete.hospital)
+          .where('phone', isEqualTo: doctorToDelete.phone)
+          .get();
 
-    // Delete the document from Firestore
-    if (querySnapshot.docs.isNotEmpty) {
-      await querySnapshot.docs.first.reference.delete();
-    } else {
-      print('Doctor not found in Firestore');
+      // Delete the document from Firestore
+      if (querySnapshot.docs.isNotEmpty) {
+        await querySnapshot.docs.first.reference.delete();
+      } else {
+        print('Doctor not found in Firestore');
+      }
+
+      // Remove the doctor from the local list
+      setState(() {
+        doctors.removeAt(index);
+      });
+    } catch (e) {
+      print("Error deleting doctor: $e");
     }
-
-    // Remove the doctor from the local list
-    setState(() {
-      doctors.removeAt(index);
-    });
-  } catch (e) {
-    print("Error deleting doctor: $e");
   }
-}
-
-
 
   // Function to update a doctor's details
   void _updateDoctor(int index) {
@@ -158,14 +157,29 @@ void _deleteDoctor(int index) async {
           // the <widget> is used to show that all the code inside the actions contain the widgets like buttons,text 
           actions: <Widget>[
             ElevatedButton(
-              onPressed: () {
-                // Updating the doctor details when "Update" button is pressed
-                setState(() {
-                  doctors[index].name = nameController.text;
-                  doctors[index].hospital = hospitalController.text;
-                  doctors[index].phone = phoneController.text;
-                });
-                Navigator.of(context).pop(); // Closing the dialog box
+              onPressed: () async {
+                try {
+                  // Update the doctor details in Firestore
+                  await FirebaseFirestore.instance
+                      .collection('Doctor_view')
+                      .doc(doctors[index].id)
+                      .update({
+                    'name': nameController.text,
+                    'hospital': hospitalController.text,
+                    'phone': phoneController.text,
+                  });
+
+                  // Update the doctor details locally
+                  setState(() {
+                    doctors[index].name = nameController.text;
+                    doctors[index].hospital = hospitalController.text;
+                    doctors[index].phone = phoneController.text;
+                  });
+
+                  Navigator.of(context).pop(); // Closing the dialog box
+                } catch (e) {
+                  print("Error updating doctor: $e");
+                }
               },
               child: Text(
                 "Update",
@@ -185,13 +199,11 @@ void _deleteDoctor(int index) async {
   }
 
   // Function to launch the phone call action
-  // Function to launch the phone call action
-void launchCaller({required String actionCall}) async {
-  if (await canLaunch(actionCall)) {
-    await launch(actionCall);
-  } else {
-    print("Could not launch $actionCall");
+  void launchCaller({required String actionCall}) async {
+    if (await canLaunch(actionCall)) {
+      await launch(actionCall);
+    } else {
+      print("Could not launch $actionCall");
+    }
   }
-}
-
 }

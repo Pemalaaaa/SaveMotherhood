@@ -13,6 +13,8 @@ import 'package:pema_la/screens/AddDoctorScreen.dart';
 import 'package:pema_la/screens/ChangePassword.dart';
 import 'package:pema_la/screens/DashboardScreen.dart';
 import 'package:pema_la/screens/EditProfileScreen.dart';
+import 'package:pema_la/screens/OnsplashScreen.dart';
+import 'package:pema_la/screens/PDFScreen.dart';
 import 'package:pema_la/screens/ProfileScreen.dart';
 import 'package:pema_la/screens/RegisterScreen.dart';
 import 'package:pema_la/screens/ShoppingScreen.dart';
@@ -34,10 +36,10 @@ void main() async {
   await Hive.initFlutter();
 
   //open a box
-   var box = await Hive.openBox('mybox');
-   //for notification
-  Get.put(NotificationController());
+  var box = await Hive.openBox('mybox');
+  //for notification
 
+  Get.put(NotificationController());
   AwesomeNotifications().initialize(
     'resource://drawable/ic_launcher',
     [
@@ -62,12 +64,14 @@ void main() async {
   runApp(GetMaterialApp(
       debugShowCheckedModeBanner: false,
 
-initialRoute:'/login',
-      //  initialRoute: user != null
-      //   ? '/navbar'
-      //   : '/login', // what we need to dislay we can write here
+initialRoute:'/splash',
+      // initialRoute: user != null
+      //     ? '/navbar'
+      //     : '/splash', // what we need to dislay we can write here
 
       routes: {
+        //splashScreen
+        '/splash': (context) => SplashScreen(),
         '/onbording': (context) => OnBoardingScreen(),
         '/dashboad': (context) => DashboardScreen(),
         '/navbar': (context) => Navbar(),
@@ -78,21 +82,20 @@ initialRoute:'/login',
         '/shop': (context) => ShoppingScreen(),
         '/periodic': (context) => PerodicNotify(),
         '/Notification': (context) => NotificationCheckUp(),
-        '/profileId':(context)=>ProfileScreen(),
+        '/profileId': (context) => ProfileScreen(),
 
-          //make login funcion
-         '/login': (context) => LoginScreen(),
-          '/register':(context)=>RegisterScreen(),
+ 
+        //make login funcion
+        '/login': (context) => LoginScreen(),
+        '/register': (context) => RegisterScreen(),
 
-          //Edit profile:
-          '/editprofile':(context)=>EditProfile(),
+        //Edit profile:
+        '/editprofile': (context) => EditProfile(),
 
-          //change passweord
-          '/changePassword':(context)=> ChangePasswordScreen(),
-          
-          
+        //change passweord
+        '/changePassword': (context) => ChangePasswordScreen(),
 
-      }
-      )
-      );
+        //pdf
+        '/pdf': (context) => PDFScreen(),
+      }));
 }

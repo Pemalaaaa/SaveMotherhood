@@ -15,7 +15,7 @@ class IntroPage4 extends StatelessWidget {
             height: 4,
           ),
           Text(
-            "Stay organized throughout your pregnancy journey",
+            "Stay Connect With Doctor",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 15,

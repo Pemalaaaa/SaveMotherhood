@@ -41,8 +41,8 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
               Center(
                 child: Image.asset(
                   product.image,
-                  width: 80,
-                  height: 120,
+                  width: 100,
+                  // height: 90,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -57,7 +57,7 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
                   launchProductLink(product.link);
                 },
                 child: Text(
-                  "Official site visite",
+                  "Visite Official site",
                   style: TextStyle(
                     color: Colors.blue,
                     decoration: TextDecoration.underline,

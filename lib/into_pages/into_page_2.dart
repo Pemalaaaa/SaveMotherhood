@@ -14,7 +14,7 @@ class IntroPage2 extends StatelessWidget {
        
         SizedBox(height: 4,),
         
-        Text("Stay organized throughout your pregnancy journey" ,
+        Text("Shop Pregnancy Product" ,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 15,

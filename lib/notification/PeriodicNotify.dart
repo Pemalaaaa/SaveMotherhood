@@ -152,7 +152,9 @@ class _PerodicNotifyState extends State<PerodicNotify> {
             ),
           );
         },
-        child: const Text('Add Event'),
+        child: const Text('Add Event',style: TextStyle(color: Colors.white ),), style: ElevatedButton.styleFrom(
+                     backgroundColor: Color(0xFFFFC2CD),
+        ),
       ),
     );
   }

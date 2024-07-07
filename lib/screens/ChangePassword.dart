@@ -50,7 +50,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('Passwords do not match'),
-            backgroundColor: Colors.amber,
+           backgroundColor:Color(0xFFFFC2CD),
           ),
         );
       }
@@ -60,17 +60,17 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     }
 
    return Scaffold(
-      backgroundColor:  Colors.amber,
+     backgroundColor:Color(0xFFF7E5E7),
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
-          'Change Password',
+          'Set New Password',
           style: TextStyle(
-            color:  Colors.amber,
-            fontSize: 16,
+            fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
         ),
-        backgroundColor:  Colors.amber,
+        backgroundColor: Color(0xFFFFC2CD),
         elevation: 0,
       ),
       body: ListView(
@@ -84,7 +84,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               child: Center(
                 child: CircleAvatar(
                   maxRadius: 75,
-                  backgroundImage: AssetImage('images/coal.jpg'),
+                  backgroundImage: AssetImage('assets/images/2tr-removebg-preview.png'),
                 ),
               ),
             ),
@@ -97,19 +97,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               child: Column(
                 children: [
                   TextFormField(
-                    obscureText: showPass,
+                    obscureText: !showPass,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.key,
-                        color:  Colors.amber,
-                      ),
                       labelStyle: const TextStyle(
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(color:  Colors.amber),
+                        borderSide: const BorderSide(color: Color(0xFFFFC2CD)),
                         borderRadius: BorderRadius.circular(12),
                       ),
  suffixIcon: InkWell(
@@ -121,7 +117,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         child: Icon(
                           showPass ? Icons.visibility : Icons.visibility_off,
                           size: 20,
-                          color:  Colors.amber,
+                         color: Color(0xFFFFC2CD)
                         ),
                       ),
                       hintText: '*',
@@ -136,19 +132,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
-                    obscureText: showPass,
+                    obscureText: !showPass,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.key,
-                        color:  Colors.amber,
-                      ),
                       labelStyle: const TextStyle(
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
                       border: OutlineInputBorder(
-                        borderSide: const BorderSide(color:  Colors.amber),
+                        borderSide: const BorderSide(color: Color(0xFFFFC2CD)),
   borderRadius: BorderRadius.circular(12),
                       ),
                       suffixIcon: InkWell(
@@ -160,10 +152,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         child: Icon(
                           showPass ? Icons.visibility : Icons.visibility_off,
                           size: 20,
-                          color:  Colors.amber,
+                          color: Color(0xFFFFC2CD),
                         ),
                       ),
-                      hintText: '',
+                      hintText: '*',
                       labelText: 'New Password',
                     ),
                     validator: (value) {
@@ -180,19 +172,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
-                    obscureText: showPass,
+                    obscureText: !showPass,
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.key,
-                        color:  Colors.amber,
-                      ),
                       labelStyle: const TextStyle(
                         color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
  border: OutlineInputBorder(
-                        borderSide: const BorderSide(color:  Colors.amber),
+                        borderSide: const BorderSide(color: Color(0xFFFFC2CD)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       suffixIcon: InkWell(
@@ -204,10 +192,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         child: Icon(
                           showPass ? Icons.visibility : Icons.visibility_off,
                           size: 20,
-                          color:  Colors.amber,
+                         color: Color(0xFFFFC2CD),
                         ),
                       ),
-                      hintText: '',
+                      hintText: '*',
                       labelText: 'Confirm Password',
                     ),
                     validator: (value) {
@@ -231,7 +219,7 @@ if (value.length < 8) {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        backgroundColor:  Colors.amber,
+                        backgroundColor:Color(0xFFFFC2CD),
                         foregroundColor: Colors.black,
                         textStyle: const TextStyle(
                           fontSize: 16,
